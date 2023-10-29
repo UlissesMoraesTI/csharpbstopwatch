@@ -14,6 +14,7 @@ namespace Stopwatch
         {
             string data = " ";
             char type = ' ';
+            int time = 0;
 
             do
             {
@@ -23,16 +24,23 @@ namespace Stopwatch
                 Console.WriteLine("#-----------------------------#");
                 Console.WriteLine("[S] = Segundo => 10s(Segundos)#");
                 Console.WriteLine("[M] = Minuto  =>  1m(Minutos) #");
-                Console.WriteLine("[0] = Sair                    #");
+                Console.WriteLine("[0] = Sair    =>  00(Sair)    #");
                 Console.WriteLine("#-----------------------------#");
 
                 Console.WriteLine("Quanto tempo deseja contar?");
 
                 data = Console.ReadLine().ToLower();
-                type = char.Parse(data.Substring(data.Length - 1, 1));
 
-                int time = int.Parse(data.Substring(0, data.Length - 1));
-
+                if (data.Length != 0)
+                {
+                    type = char.Parse(data.Substring(data.Length - 1, 1));
+                    time = int.Parse(data.Substring(0, data.Length - 1));
+                }
+                else
+                {
+                    type = char.Parse(data.Substring(data.Length, 1));
+                    time = int.Parse(data.Substring(0, data.Length));
+                }
 
                 switch (type)
                 {
@@ -91,8 +99,15 @@ namespace Stopwatch
         static void Sair()
         {
             Console.Clear();
-            Console.WriteLine("Aplicação encerrada com sucesso!");
-            Console.ReadKey();
+            Console.WriteLine("Aplicação encerrada com sucesso!...");
+            Thread.Sleep(1000);
+            //Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("Aplicação encerrada com sucesso!..");
+            Thread.Sleep(1000);
+            Console.Clear();
+            Console.WriteLine("Aplicação encerrada com sucesso!.");
+            Thread.Sleep(1000);
             Console.Clear();
             System.Environment.Exit(0);
         }
